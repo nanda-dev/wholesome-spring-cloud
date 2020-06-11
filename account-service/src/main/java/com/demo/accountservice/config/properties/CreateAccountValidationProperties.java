@@ -1,4 +1,4 @@
-package com.example.accountservicedemo.config.properties;
+package com.demo.accountservice.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

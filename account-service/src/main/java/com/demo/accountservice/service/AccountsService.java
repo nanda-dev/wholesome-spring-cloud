@@ -1,8 +1,8 @@
-package com.example.accountservicedemo.service;
+package com.demo.accountservice.service;
 
 import java.util.List;
 
-import com.example.accountservicedemo.service.model.AccountModel;
+import com.demo.accountservice.service.model.AccountModel;
 
 public interface AccountsService {
 	AccountModel createAccount(AccountModel account);

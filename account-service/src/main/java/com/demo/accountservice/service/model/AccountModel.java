@@ -1,4 +1,4 @@
-package com.example.accountservicedemo.service.model;
+package com.demo.accountservice.service.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

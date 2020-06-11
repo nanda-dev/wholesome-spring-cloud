@@ -1,4 +1,4 @@
-package com.example.accountservicedemo.controller;
+package com.demo.accountservice.controller;
 
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

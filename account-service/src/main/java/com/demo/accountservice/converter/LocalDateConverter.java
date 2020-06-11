@@ -1,4 +1,4 @@
-package com.example.accountservicedemo.converter;
+package com.demo.accountservice.converter;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;

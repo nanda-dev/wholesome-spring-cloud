@@ -1,4 +1,4 @@
-package com.example.accountservicedemo.service;
+package com.demo.accountservice.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,11 +11,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 
-import com.example.accountservicedemo.config.properties.CreateAccountValidationProperties;
-import com.example.accountservicedemo.constants.Constants;
-import com.example.accountservicedemo.dao.AccountsRepository;
-import com.example.accountservicedemo.dao.model.Account;
-import com.example.accountservicedemo.service.model.AccountModel;
+import com.demo.accountservice.config.properties.CreateAccountValidationProperties;
+import com.demo.accountservice.constants.Constants;
+import com.demo.accountservice.dao.AccountsRepository;
+import com.demo.accountservice.dao.model.Account;
+import com.demo.accountservice.service.model.AccountModel;
 
 import lombok.extern.slf4j.Slf4j;
 

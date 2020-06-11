@@ -1,4 +1,4 @@
-package com.example.accountservicedemo.controller.model;
+package com.demo.accountservice.controller.model;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

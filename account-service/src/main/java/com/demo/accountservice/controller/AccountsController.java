@@ -1,4 +1,4 @@
-package com.example.accountservicedemo.controller;
+package com.demo.accountservice.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.accountservicedemo.controller.model.AccountResponseDTO;
-import com.example.accountservicedemo.controller.model.CreateAccountRequestDTO;
-import com.example.accountservicedemo.controller.model.UpdateAccountStatusRequestDTO;
-import com.example.accountservicedemo.service.AccountsService;
-import com.example.accountservicedemo.service.model.AccountModel;
+import com.demo.accountservice.controller.model.AccountResponseDTO;
+import com.demo.accountservice.controller.model.CreateAccountRequestDTO;
+import com.demo.accountservice.controller.model.UpdateAccountStatusRequestDTO;
+import com.demo.accountservice.service.AccountsService;
+import com.demo.accountservice.service.model.AccountModel;
 
 import lombok.extern.slf4j.Slf4j;
 

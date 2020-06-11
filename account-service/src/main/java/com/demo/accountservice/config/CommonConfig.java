@@ -1,4 +1,4 @@
-package com.example.accountservicedemo.config;
+package com.demo.accountservice.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

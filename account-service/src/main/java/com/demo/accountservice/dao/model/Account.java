@@ -1,4 +1,4 @@
-package com.example.accountservicedemo.dao.model;
+package com.demo.accountservice.dao.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
