@@ -26,41 +26,46 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/accounts")
 @Slf4j
 public class AccountsController {
-	private final ModelMapper mapper;
-	private final AccountsService accountsService;
+  private final ModelMapper mapper;
+  private final AccountsService accountsService;
 
-	public AccountsController(ModelMapper mapper, AccountsService accountsService) {
-		super();
-		this.mapper = mapper;
-		this.accountsService = accountsService;
-	}
+  public AccountsController(ModelMapper mapper, AccountsService accountsService) {
+    super();
+    this.mapper = mapper;
+    this.accountsService = accountsService;
+  }
 
-	@PostMapping
-	public AccountResponseDTO createAccount(@RequestBody @Valid CreateAccountRequestDTO account) {
-		log.info("Create New Account. Request: [{}]", account);
-		AccountModel newAccount = accountsService.createAccount(mapper.map(account, AccountModel.class));
-		return mapper.map(newAccount, AccountResponseDTO.class);
-	}
+  @PostMapping
+  public AccountResponseDTO createAccount(@RequestBody @Valid CreateAccountRequestDTO account) {
+    log.info("Create New Account. Request: [{}]", account);
+    AccountModel newAccount =
+        accountsService.createAccount(mapper.map(account, AccountModel.class));
+    return mapper.map(newAccount, AccountResponseDTO.class);
+  }
 
-	@GetMapping
-	public List<AccountResponseDTO> getAllAccounts() {
-		log.info("Fetching all Accounts.");
-		return accountsService.getAllAccounts().stream()
-				.map(accountModel -> mapper.map(accountModel, AccountResponseDTO.class))
-				.collect(Collectors.toList());
-	}
-	
-	@GetMapping("/{id}")
-	public AccountResponseDTO getAccountById(@PathVariable Long id) {
-		log.info("Get Account by id: [{}]", id);
-		return mapper.map(accountsService.getAccountById(id), AccountResponseDTO.class);
-	}
-	
-	@PutMapping
-	public AccountResponseDTO updateAccountStatus(@RequestBody @Valid UpdateAccountStatusRequestDTO updateRequest) {
-		log.info("Update Account Status. Request: [{}]", updateRequest);
-		AccountModel updatedAccount = accountsService.updateAccountStatus(mapper.map(updateRequest, AccountModel.class), updateRequest.getSource());
-		return mapper.map(updatedAccount, AccountResponseDTO.class);
-	}
+  @GetMapping
+  public List<AccountResponseDTO> getAllAccounts() {
+    log.info("Fetching all Accounts.");
+    return accountsService
+        .getAllAccounts()
+        .stream()
+        .map(accountModel -> mapper.map(accountModel, AccountResponseDTO.class))
+        .collect(Collectors.toList());
+  }
 
+  @GetMapping("/{id}")
+  public AccountResponseDTO getAccountById(@PathVariable Long id) {
+    log.info("Get Account by id: [{}]", id);
+    return mapper.map(accountsService.getAccountById(id), AccountResponseDTO.class);
+  }
+
+  @PutMapping
+  public AccountResponseDTO updateAccountStatus(
+      @RequestBody @Valid UpdateAccountStatusRequestDTO updateRequest) {
+    log.info("Update Account Status. Request: [{}]", updateRequest);
+    AccountModel updatedAccount =
+        accountsService.updateAccountStatus(
+            mapper.map(updateRequest, AccountModel.class), updateRequest.getSource());
+    return mapper.map(updatedAccount, AccountResponseDTO.class);
+  }
 }

@@ -13,22 +13,20 @@ import lombok.extern.slf4j.Slf4j;
 @EnableBinding({VerficationStatusOutbound.class})
 @Slf4j
 public class QueueNotificationServiceImpl implements NotificationService {
-	private final VerficationStatusOutbound outBoundChannel;
+  private final VerficationStatusOutbound outBoundChannel;
 
-	public QueueNotificationServiceImpl(VerficationStatusOutbound outBoundChannel) {
-		super();
-		this.outBoundChannel = outBoundChannel;
-	}
+  public QueueNotificationServiceImpl(VerficationStatusOutbound outBoundChannel) {
+    super();
+    this.outBoundChannel = outBoundChannel;
+  }
 
-	@Override
-	public void notifyStatus(VerificationStatusModel verificationStatus) {
-		outBoundChannel.output().send(message(verificationStatus));
-		log.info("Message Sent: [{}]", verificationStatus);
+  @Override
+  public void notifyStatus(VerificationStatusModel verificationStatus) {
+    outBoundChannel.output().send(message(verificationStatus));
+    log.info("Message Sent: [{}]", verificationStatus);
+  }
 
-	}
-	
-	private final <T> Message<T> message(T val) {
-	    return MessageBuilder.withPayload(val).build();
-	}
-
+  private final <T> Message<T> message(T val) {
+    return MessageBuilder.withPayload(val).build();
+  }
 }

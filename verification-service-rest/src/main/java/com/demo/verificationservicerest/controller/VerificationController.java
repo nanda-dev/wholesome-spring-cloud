@@ -19,22 +19,21 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/verify")
 @Slf4j
 public class VerificationController {
-	private final ModelMapper mapper;
-	private final VerificationService verificationService;
+  private final ModelMapper mapper;
+  private final VerificationService verificationService;
 
-	public VerificationController(ModelMapper mapper, VerificationService verificationService) {
-		super();
-		this.mapper = mapper;
-		this.verificationService = verificationService;
-	}
+  public VerificationController(ModelMapper mapper, VerificationService verificationService) {
+    super();
+    this.mapper = mapper;
+    this.verificationService = verificationService;
+  }
 
-	@PostMapping
-	public VerifyPhoneResponseDTO createAccount(@RequestBody @Valid VerifyPhoneRequestDTO request) {
-		log.info("Verify Phone Number. Request: [{}]", request);
-		verificationService.verifyPhone(mapper.map(request, VerifyPhoneRequestModel.class));
-		VerifyPhoneResponseDTO response = new VerifyPhoneResponseDTO();
-		response.setStatus(true);
-		return response;
-	}
-
+  @PostMapping
+  public VerifyPhoneResponseDTO createAccount(@RequestBody @Valid VerifyPhoneRequestDTO request) {
+    log.info("Verify Phone Number. Request: [{}]", request);
+    verificationService.verifyPhone(mapper.map(request, VerifyPhoneRequestModel.class));
+    VerifyPhoneResponseDTO response = new VerifyPhoneResponseDTO();
+    response.setStatus(true);
+    return response;
+  }
 }

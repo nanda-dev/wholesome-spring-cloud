@@ -20,38 +20,39 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @EnableConfigurationProperties({VerificationServiceCommonProperties.class})
 public class VerificationServiceImpl implements VerificationService {
-	private final NotificationService queueNotifier;
-	private final VerificationServiceCommonProperties config;
-	
-	public VerificationServiceImpl(NotificationService queueNotifier, 
-			VerificationServiceCommonProperties config) {
-		super();
-		this.queueNotifier = queueNotifier;
-		this.config = config;
-	}
+  private final NotificationService queueNotifier;
+  private final VerificationServiceCommonProperties config;
 
-	@Override
-	@Async
-	public void verifyPhone(VerifyPhoneRequestModel verificationRequest) {
-		try {
-			log.info("Sleeping for [{}] seconds...zzz...", config.getSleepDurationInSeconds());
-		    TimeUnit.SECONDS.sleep(config.getSleepDurationInSeconds());
-		} catch (InterruptedException ie) {
-			log.info("Waking up!");
-		    Thread.currentThread().interrupt();
-		}
-		
-		VerificationStatusModel verificationStatus = new VerificationStatusModel();
-		verificationStatus.setId(verificationRequest.getId())
-			.setStatus(getRandomVerificationStatus())
-			.setVerficationSystem(Constants.VER_SYS);
-		queueNotifier.notifyStatus(verificationStatus);
-	}
-	
-	private String getRandomVerificationStatus() {
-		List<String> statuses = Arrays.asList(Constants.VER_STATUS_SUCCESS, Constants.VER_STATUS_FAILURE);
-		int index = new Random().ints(1, 0, 2).findFirst().getAsInt();
-		return statuses.get(index);
-	}
-	
+  public VerificationServiceImpl(
+      NotificationService queueNotifier, VerificationServiceCommonProperties config) {
+    super();
+    this.queueNotifier = queueNotifier;
+    this.config = config;
+  }
+
+  @Override
+  @Async
+  public void verifyPhone(VerifyPhoneRequestModel verificationRequest) {
+    try {
+      log.info("Sleeping for [{}] seconds...zzz...", config.getSleepDurationInSeconds());
+      TimeUnit.SECONDS.sleep(config.getSleepDurationInSeconds());
+    } catch (InterruptedException ie) {
+      log.info("Waking up!");
+      Thread.currentThread().interrupt();
+    }
+
+    VerificationStatusModel verificationStatus = new VerificationStatusModel();
+    verificationStatus
+        .setId(verificationRequest.getId())
+        .setStatus(getRandomVerificationStatus())
+        .setVerficationSystem(Constants.VER_SYS);
+    queueNotifier.notifyStatus(verificationStatus);
+  }
+
+  private String getRandomVerificationStatus() {
+    List<String> statuses =
+        Arrays.asList(Constants.VER_STATUS_SUCCESS, Constants.VER_STATUS_FAILURE);
+    int index = new Random().ints(1, 0, 2).findFirst().getAsInt();
+    return statuses.get(index);
+  }
 }

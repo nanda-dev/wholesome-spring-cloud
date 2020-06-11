@@ -9,13 +9,13 @@ import javax.persistence.Converter;
 @Converter(autoApply = true)
 public class LocalDateConverter implements AttributeConverter<LocalDate, Timestamp> {
 
-	@Override
-	public Timestamp convertToDatabaseColumn(LocalDate localDate) {
-		return (localDate == null ? null : Timestamp.valueOf(localDate.atStartOfDay()));
-	}
-	
-	@Override
-	public LocalDate convertToEntityAttribute(Timestamp sqlDate) {
-		return (sqlDate == null ? null : sqlDate.toLocalDateTime().toLocalDate());
-	}
+  @Override
+  public Timestamp convertToDatabaseColumn(LocalDate localDate) {
+    return (localDate == null ? null : Timestamp.valueOf(localDate.atStartOfDay()));
+  }
+
+  @Override
+  public LocalDate convertToEntityAttribute(Timestamp sqlDate) {
+    return (sqlDate == null ? null : sqlDate.toLocalDateTime().toLocalDate());
+  }
 }

@@ -8,12 +8,9 @@ import lombok.Data;
 
 @Data
 public class VerifyPhoneRequestDTO {
-	@NotNull
-	private Long id;	
-	
-	
-	@NotEmpty
-	@Size(min = 10, max = 10)
-	private String phoneNum;
+  @NotNull private Long id;
 
+  @NotEmpty
+  @Size(min = 10, max = 10)
+  private String phoneNum;
 }

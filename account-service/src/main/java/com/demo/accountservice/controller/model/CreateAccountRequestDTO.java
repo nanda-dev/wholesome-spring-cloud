@@ -12,20 +12,19 @@ import lombok.Data;
 
 @Data
 public class CreateAccountRequestDTO {
-	@NotEmpty
-	@Size(min = 3)
-	private String firstName;
-	
-	@NotEmpty
-	@Size(min = 3)
-	private String lastName;
-	
-	@NotNull
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dob;
-	
-	@NotEmpty
-	@Size(min = 10, max = 10)
-	private String phoneNum;
+  @NotEmpty
+  @Size(min = 3)
+  private String firstName;
 
+  @NotEmpty
+  @Size(min = 3)
+  private String lastName;
+
+  @NotNull
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private LocalDate dob;
+
+  @NotEmpty
+  @Size(min = 10, max = 10)
+  private String phoneNum;
 }

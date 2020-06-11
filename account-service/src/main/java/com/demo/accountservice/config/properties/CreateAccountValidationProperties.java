@@ -7,6 +7,5 @@ import lombok.Data;
 @Data
 @ConfigurationProperties(prefix = "create-account")
 public class CreateAccountValidationProperties {
-	private Integer minAge;
-
+  private Integer minAge;
 }

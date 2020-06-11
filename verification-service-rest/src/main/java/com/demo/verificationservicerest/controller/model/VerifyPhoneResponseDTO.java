@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class VerifyPhoneResponseDTO {
-	private Boolean status;
+  private Boolean status;
 }

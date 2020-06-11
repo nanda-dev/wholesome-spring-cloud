@@ -15,20 +15,22 @@ import lombok.Data;
 @Entity
 @Table(name = "accounts")
 public class Account {
-	@Id
-	@GeneratedValue
-	private Long id;
-	private String firstName;
-	private String lastName;
-	private LocalDate dob;
-	private String phoneNum;
-	private String status;
-	@Column(updatable = false)
-	private String createdBy;
-	@Column(updatable = false)
-	private LocalDateTime createdOn;
-	@Column(insertable = false)
-	private String modifiedBy;
-	@Column(insertable = false)
-	private LocalDateTime modifiedOn;
+  @Id @GeneratedValue private Long id;
+  private String firstName;
+  private String lastName;
+  private LocalDate dob;
+  private String phoneNum;
+  private String status;
+
+  @Column(updatable = false)
+  private String createdBy;
+
+  @Column(updatable = false)
+  private LocalDateTime createdOn;
+
+  @Column(insertable = false)
+  private String modifiedBy;
+
+  @Column(insertable = false)
+  private LocalDateTime modifiedOn;
 }

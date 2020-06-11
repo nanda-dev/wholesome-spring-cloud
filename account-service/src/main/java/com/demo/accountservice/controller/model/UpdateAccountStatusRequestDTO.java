@@ -7,13 +7,9 @@ import lombok.Data;
 
 @Data
 public class UpdateAccountStatusRequestDTO {
-	@NotNull
-	private Long id;
-	
-	@NotEmpty
-	private String status;
-	
-	@NotEmpty
-	private String source;
-	
+  @NotNull private Long id;
+
+  @NotEmpty private String status;
+
+  @NotEmpty private String source;
 }

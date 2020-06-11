@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 import com.demo.accountservice.dao.model.Account;
 
 @Repository
-public interface AccountsRepository extends JpaRepository<Account, Long> {
-
-}
+public interface AccountsRepository extends JpaRepository<Account, Long> {}

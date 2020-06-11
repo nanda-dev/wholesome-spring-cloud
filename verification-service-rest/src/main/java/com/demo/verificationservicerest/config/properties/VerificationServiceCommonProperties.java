@@ -7,6 +7,5 @@ import lombok.Data;
 @Data
 @ConfigurationProperties(prefix = "verify-phone")
 public class VerificationServiceCommonProperties {
-	private Integer sleepDurationInSeconds;
-
+  private Integer sleepDurationInSeconds;
 }

@@ -6,7 +6,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class VerificationStatusModel {
-	private Long id;
-	private String status;
-	private String verficationSystem;
+  private Long id;
+  private String status;
+  private String verficationSystem;
 }
