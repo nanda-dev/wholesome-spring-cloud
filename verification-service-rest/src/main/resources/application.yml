@@ -1,0 +1,22 @@
+server.port: ${PORT:8081}
+spring:
+  #Already specified in bootstrap.yml.
+  #application.name: verification-service-rest
+  cloud:
+    bus:
+      enabled: true
+      refresh:
+        enabled: true
+    stream:
+      bindings:
+        verificationstatus:
+          destination: topic-verificationstatus
+        mystatechannel:
+          destination: topic-state           
+
+#Enabling all endpoints, just for demo purposes
+management.endpoints.web.exposure.include: '*'
+
+#Application biz logic specific configurations:
+verify-phone:
+  sleepDurationInSeconds: 15          
