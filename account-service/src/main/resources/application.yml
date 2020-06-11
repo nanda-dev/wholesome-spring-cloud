@@ -1,0 +1,29 @@
+server.port: ${PORT:8080}
+spring:
+  #Already specified in bootstrap.yml.
+  #application.name: accounts-service-demo
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/testdb
+    username: root
+    password: rootpass
+  jpa:
+    hibernate.ddl-auto: none
+    show_sql: false
+    database-platform: org.hibernate.dialect.MySQLDialect
+    properties:
+      hibernate:
+        id:
+          new_generator_mappings: false
+  cloud:
+    bus:
+      enabled: true
+      refresh:
+        enabled: true
+
+#Enabling all endpoints, just for demo purposes
+management.endpoints.web.exposure.include: '*'
+
+#Application biz logic specific configurations:
+create-account:
+  min-age: 18          
