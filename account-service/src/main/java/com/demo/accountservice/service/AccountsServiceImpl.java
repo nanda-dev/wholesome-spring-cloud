@@ -15,6 +15,8 @@ import com.demo.accountservice.config.properties.CreateAccountValidationProperti
 import com.demo.accountservice.constants.Constants;
 import com.demo.accountservice.dao.AccountsRepository;
 import com.demo.accountservice.dao.model.Account;
+import com.demo.accountservice.dao.verificationsvcrest.VerificationServiceRestClient;
+import com.demo.accountservice.dao.verificationsvcrest.model.VerifyPhoneRequest;
 import com.demo.accountservice.service.model.AccountModel;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,15 +28,18 @@ public class AccountsServiceImpl implements AccountsService {
   private final ModelMapper mapper;
   private final AccountsRepository accountsRepo;
   private final CreateAccountValidationProperties createAccountValidationProperties;
+  private final VerificationServiceRestClient verificationSvcClient;
 
   public AccountsServiceImpl(
       ModelMapper mapper,
       AccountsRepository accountsRepo,
-      CreateAccountValidationProperties createAccountValidationProperties) {
+      CreateAccountValidationProperties createAccountValidationProperties,
+      VerificationServiceRestClient verificationSvcClient) {
     super();
     this.mapper = mapper;
     this.accountsRepo = accountsRepo;
     this.createAccountValidationProperties = createAccountValidationProperties;
+    this.verificationSvcClient = verificationSvcClient;
   }
 
   @Override
@@ -52,11 +57,22 @@ public class AccountsServiceImpl implements AccountsService {
           "Age cannot be less than " + createAccountValidationProperties.getMinAge());
     }
 
+    // Insert record into the Database
     accountModel.setCreatedBy(Constants.ACCOUNTS_SERVICE);
     accountModel.setCreatedOn(LocalDateTime.now());
     Account newAccount = accountsRepo.save(mapper.map(accountModel, Account.class));
 
     log.info("New Account created in database. Id: [{}]", newAccount.getId());
+
+    // Call Verification Service to initiate Verification process.
+    // Verification Service is an async process which will notify
+    // the status upon its completion through RabbitMQ.
+
+    VerifyPhoneRequest verificationRequest = new VerifyPhoneRequest();
+    verificationRequest.setId(newAccount.getId()).setPhoneNum(newAccount.getPhoneNum());
+    verificationSvcClient.verifyPhone(verificationRequest);
+    
+    log.info("Verification process initiated.");
 
     return mapper.map(newAccount, AccountModel.class);
   }
