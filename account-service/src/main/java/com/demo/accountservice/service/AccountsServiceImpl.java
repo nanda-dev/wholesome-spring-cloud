@@ -17,6 +17,8 @@ import com.demo.accountservice.dao.AccountsRepository;
 import com.demo.accountservice.dao.model.Account;
 import com.demo.accountservice.dao.verificationsvcrest.VerificationServiceRestClient;
 import com.demo.accountservice.dao.verificationsvcrest.model.VerifyPhoneRequest;
+import com.demo.accountservice.exception.DuplicatePhoneNumberException;
+import com.demo.accountservice.exception.InvalidAgeException;
 import com.demo.accountservice.service.model.AccountModel;
 
 import lombok.extern.slf4j.Slf4j;
@@ -53,8 +55,12 @@ public class AccountsServiceImpl implements AccountsService {
         createAccountValidationProperties.getMinAge());
 
     if (age < createAccountValidationProperties.getMinAge()) {
-      throw new RuntimeException(
-          "Age cannot be less than " + createAccountValidationProperties.getMinAge());
+      throw new InvalidAgeException(age);
+    }
+    
+    // Check if another record exists with the same phone-number
+    if(accountsRepo.existsByPhoneNum(accountModel.getPhoneNum())) {
+    	throw new DuplicatePhoneNumberException(accountModel.getPhoneNum());
     }
 
     // Insert record into the Database
@@ -71,7 +77,7 @@ public class AccountsServiceImpl implements AccountsService {
     VerifyPhoneRequest verificationRequest = new VerifyPhoneRequest();
     verificationRequest.setId(newAccount.getId()).setPhoneNum(newAccount.getPhoneNum());
     verificationSvcClient.verifyPhone(verificationRequest);
-    
+
     log.info("Verification process initiated.");
 
     return mapper.map(newAccount, AccountModel.class);

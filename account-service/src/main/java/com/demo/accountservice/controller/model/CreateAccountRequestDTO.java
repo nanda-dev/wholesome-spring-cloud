@@ -13,18 +13,18 @@ import lombok.Data;
 @Data
 public class CreateAccountRequestDTO {
   @NotEmpty
-  @Size(min = 3)
+  @Size(min = 3, message = "First name is required.")
   private String firstName;
 
   @NotEmpty
-  @Size(min = 3)
+  @Size(min = 3, message = "Last name is required.")
   private String lastName;
 
-  @NotNull
+  @NotNull(message = "Date of Birth is required. Expected format: 2001-05-25")
   @JsonFormat(pattern = "yyyy-MM-dd")
   private LocalDate dob;
 
-  @NotEmpty
+  @NotEmpty(message = "Phone number is required.")
   @Size(min = 10, max = 10)
   private String phoneNum;
 }

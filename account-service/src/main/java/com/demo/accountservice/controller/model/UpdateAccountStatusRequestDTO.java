@@ -7,9 +7,9 @@ import lombok.Data;
 
 @Data
 public class UpdateAccountStatusRequestDTO {
-  @NotNull private Long id;
+  @NotNull(message = "Id is required.") private Long id;
 
-  @NotEmpty private String status;
+  @NotEmpty(message = "Status is required.") private String status;
 
-  @NotEmpty private String source;
+  @NotEmpty(message = "Source is required.") private String source;
 }
