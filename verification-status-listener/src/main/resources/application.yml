@@ -30,7 +30,7 @@ spring:
       bindings:
         receive-in-0:
           destination: topic-verificationstatus
-          group: verificationstatusconsumers2
+          group: verificationstatusconsumers
 
 #Enabling all endpoints, just for demo purposes
 management.endpoints.web.exposure.include: '*'
