@@ -1,0 +1,38 @@
+server.port: ${PORT:8082}
+spring:
+  #Already specified in bootstrap.yml.
+  #application.name: verification-status-listener
+  cloud:
+    bus:
+      #Disabling Cloud-Bus for now, as it is clashing with the RabbitMQ binding used to receive message from Producer app.
+      #This is causing the spring.cloud.stream.bindings config listed below to not load - 
+      #there is no Channel related info being displayed in the logs for destination: topic-verificationstatus
+      #Could be because both bindings are currently using the same RabbitMQ connection, locally.
+      #When deploying in Cloud/PCF, we might most probably be using two RabbitMQ instances,
+      #one for Config Server Bus Refresh and one for application level messaging duties?  
+      #Need multiple 'binders' to be declared/configured? What happens when this gets deployed in PCF?
+      enabled: false
+      #If Cloud Bus is disabled, will this config be of much use?
+      refresh:
+        enabled: true
+      
+    #Ribbon project is under maintenance, and as per Spring team's recommendation,
+    #keeping the below flag as 'false' to exclude the default usage of Ribbon.
+    #Sample warning from logs given below:
+    #"BlockingLoadBalancerClientRibbonWarnLogger : You already have RibbonLoadBalancerClient on your classpath. 
+    #It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead.
+    #In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or 
+    #remove spring-cloud-starter-netflix-ribbon from your project."
+    loadbalancer.ribbon.enabled: false
+    stream:
+      function:
+        definition: receive
+      bindings:
+        receive-in-0:
+          destination: topic-verificationstatus
+          group: verificationstatusconsumers2
+
+#Enabling all endpoints, just for demo purposes
+management.endpoints.web.exposure.include: '*'
+
+#Application biz logic specific configurations:
