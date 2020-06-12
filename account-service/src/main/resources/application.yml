@@ -20,6 +20,14 @@ spring:
       enabled: true
       refresh:
         enabled: true
+    #Ribbon project is under maintenance, and as per Spring team's recommendation,
+    #keeping the below flag as 'false' to exclude the default usage of Ribbon.
+    #Sample warning from logs given below:
+    #"BlockingLoadBalancerClientRibbonWarnLogger : You already have RibbonLoadBalancerClient on your classpath. 
+    #It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead.
+    #In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or 
+    #remove spring-cloud-starter-netflix-ribbon from your project."
+    loadbalancer.ribbon.enabled: false
 
 #Enabling all endpoints, just for demo purposes
 management.endpoints.web.exposure.include: '*'
