@@ -29,25 +29,25 @@ To run a Spring Cloud Config Server, with a remote GitHub repo to store the appl
 * Stand-up one from scratch, by creating and running a Spring Boot app with the following dependency:
 ```
 <dependencies>
-        ...
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-config-server</artifactId>
-		</dependency>
-        ...
+    ...
+	<dependency>
+	    <groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-config-server</artifactId>
+	</dependency>
+    ...
 </dependencies>        
 <dependencyManagement>
-        ...
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-        ...
+    ...
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-dependencies</artifactId>
+			<version>${spring-cloud.version}</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+	</dependencies>
+    ...
 </dependencyManagement>
 ```
 Use the following config in application.yml to run the Server on port 8888 (normally, Config Clients would try to connect to Config Server instance at this port, unless explicitly told otherwise), and to use a GitHub public repo where configurations for each applicaition is stored under corresponding folder. The `searchPaths` field's value, in the below configuration, represents this setting. The folder name within the repo assigned to an application should be haivng the same name as the app's `spring.application.name` property.
