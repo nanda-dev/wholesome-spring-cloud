@@ -9,9 +9,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication(
     exclude = {SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class})
 @EnableAsync
-public class VerificationServiceRestDemoApplication {
+public class VerificationServiceRestApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(VerificationServiceRestDemoApplication.class, args);
+    SpringApplication.run(VerificationServiceRestApplication.class, args);
   }
 }

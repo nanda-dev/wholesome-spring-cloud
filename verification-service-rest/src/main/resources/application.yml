@@ -18,9 +18,7 @@ spring:
     stream:
       bindings:
         verificationstatus:
-          destination: topic-verificationstatus
-        mystatechannel:
-          destination: topic-state           
+          destination: topic-verificationstatus       
 
 #Enabling all endpoints, just for demo purposes
 management.endpoints.web.exposure.include: '*'
