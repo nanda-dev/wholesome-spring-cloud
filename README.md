@@ -113,9 +113,8 @@ To run a Spring Cloud Eureka Discovery Server, with a remote GitHub repo to stor
 
 * Use [Spring Cloud CLI](https://cloud.spring.io/spring-cloud-cli/reference/html/) and start the Eureka Server
 ```
-$ spring cloud eureke
+$ spring cloud eureka
 ```
-
 
 By default, Eureka Server would be running at: `http://localhost:8761`
 
