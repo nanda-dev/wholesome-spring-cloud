@@ -122,7 +122,7 @@ By default, Eureka Server would be running at: `http://localhost:8761`
 ## MySQL Server
 You can either [download and install MySQL server](https://dev.mysql.com/downloads/), or if you have Docker, simply run the image using: 
 
-`$ sudo docker run --name mysql-host -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=rootpass mysql`
+`$ sudo docker run --name mysql-server -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root-password mysql`
 
 Note: Since this project is just for demo purpose, we are not creating any additional user credentials, but sticking with the **root** user when connecting from the apps as well, which is not advisable in real-world scenarios.
 
