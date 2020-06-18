@@ -83,7 +83,7 @@ spring:
 ```
 The above noted `configserver.yml` must be placed in the directory from where the `$ spring cloud configserver` command was issued from your terminal. Please update the GitHub repo with yours as needed.
 
-For accessing private repos using username and password and https:// URI, add these two more params to the above config under `spring.cloud.config.server.git`:
+For accessing private repos using username and password and https:// URI, add these two additional params to the above configuration under `spring.cloud.config.server.git`:
 
 ```
 spring:
@@ -99,7 +99,7 @@ spring:
 	  password: replace-this-with-your-password
 ```
 
-For more detailed info on how to setup authentication, including ssh key based access to the repos, take a look at the official documentation [here](https://cloud.spring.io/spring-cloud-config/reference/html/#_authentication)
+For more detailed info on how to setup authentication, including ssh key based access to the repos, take a look at the official documentation [here](https://cloud.spring.io/spring-cloud-config/reference/html/#_authentication).
 
 P.S: If, by any chance you are seeing an error such as this in your Config Server logs when trying to access a private repo through https, please verify the below listed points:
 
@@ -109,8 +109,9 @@ Caused by: org.eclipse.jgit.errors.NoRemoteRepositoryException: https://git.work
         at org.eclipse.jgit.transport.TransportHttp.createNotFoundException(TransportHttp.java:496) ~[org.eclipse.jgit-5.1.3.201810200350-r.jar:5.1.3.201810200350-r]
 ```
 1. The username used is having sufficient permissions to access the repo
-2. If #1 has been verified, try adding a **.git** suffix to the `git.uri` parameter, like this: `uri: https://github.com/nanda-dev/spring-cloud-config-repo.git`
-By default, Config Server would be running at: `http://localhost:8888`
+2. If #1 has been verified, try adding a **.git** suffix to the `git.uri` parameter, like this: `uri: https://github.com/nanda-dev/spring-cloud-config-repo.git`.
+
+By default, Config Server would be running at: `http://localhost:8888`.
 
 ## Spring Cloud Eureka Discovery Server
 To run a Spring Cloud Eureka Discovery Server, with a remote GitHub repo to store the application config, you can either:
